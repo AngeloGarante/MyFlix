@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import background from "../asset/profileBackground.jpg";
 import { Link } from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
 import FavoriteMovies from "./FavoriteMovies";

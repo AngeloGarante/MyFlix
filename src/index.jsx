@@ -6,7 +6,6 @@ import { Container } from "react-bootstrap";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import "./index.scss";
-import Footer from "./components/footer-view/Footer";
 
 const MyFlixApplication = () => {
   return (

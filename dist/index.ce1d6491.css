@@ -1,5 +1,14 @@
-.my-flix {
-  color: #4682b4;
+.app-container {
+  background-color: #696969;
+}
+
+.border-page {
+  background-color: #000;
+}
+
+body > #root {
+  height: 100vh;
+  background-color: #000;
 }
 
 :root {
@@ -12030,6 +12039,19 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+.profile-container {
+  color: #fff;
+  font-size: large;
+}
+
+.nav-bar {
+  background-color: #b22222;
+}
+
+.movie-prop {
+  color: #fff;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */
