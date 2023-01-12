@@ -7,8 +7,7 @@ import FavoriteMovies from "./FavoriteMovies";
 import { Col, Container, Figure, Row } from "react-bootstrap";
 import "./profile-view.scss";
 
-const ProfileView = ({ userData, movies }) => {
-  const token = localStorage.getItem("token");
+const ProfileView = ({ token, userData, movies }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(storedUser);
   const [delId, setdelId] = useState("");
