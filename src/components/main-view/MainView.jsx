@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 // import components
-import MovieCard from "../movie-card/MovieCard";
 import MovieView from "../movie-view/MovieView";
 import LoginView from "../login-view/LoginView";
 import SignUpView from "../signup-view/SignUpView";
@@ -13,25 +12,23 @@ import ProfileView from "../profile-view/ProfileView";
 import UpdateUser from "../profile-view/UpdateUser";
 import ErrorView from "../error-view/ErrorView";
 import DeleteProfile from "../profile-view/DeleteProfile";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getMovies } from "../../redux/reducers/moviesSlices";
+import MoviesList from "../movies-list/MoviesList";
 //component
 const MainView = () => {
+  const dispatch = useDispatch();
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [movies, setMovies] = useState([]);
+  const movies = useSelector((state) => state.movies.movies);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   useEffect(() => {
     if (!token) {
       return;
     }
-
-    fetch("https://myflix-angelo.cyclic.app/movies", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((movies) => {
-        setMovies(movies);
-      });
+    dispatch(getMovies());
   }, [token]);
 
   return (
@@ -89,7 +86,7 @@ const MainView = () => {
                   <Col md={8}>The list is empty</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} user={user} />
+                    <MovieView user={user} />
                   </Col>
                 )}
               </>
@@ -98,21 +95,7 @@ const MainView = () => {
           <Route
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col md={8}>The list is empty</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-5" key={movie._id} md={3}>
-                        <MovieCard movieData={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
+              <>{!user ? <Navigate to="/login" replace /> : <MoviesList />}\</>
             }
           />
           <Route

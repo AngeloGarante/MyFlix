@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "./navbar.scss";
 const NavBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/">
           My Flix

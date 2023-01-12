@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import "./movie-view.scss";
+import { useSelector } from "react-redux";
 
-const MovieView = ({ movies, user }) => {
+const MovieView = ({ user }) => {
+  const movies = useSelector((state) => state.movies.movies);
   const { movieId } = useParams();
   const movie = movies.find((movie) => {
     if (movie._id === movieId) {
@@ -12,7 +15,6 @@ const MovieView = ({ movies, user }) => {
     }
   });
   const handleFavorite = (event) => {
-    event.preventDefault();
     const token = localStorage.getItem("token");
     const addMovie = {
       MovieId: movie._id,
@@ -40,7 +42,7 @@ const MovieView = ({ movies, user }) => {
     }
   };
   return (
-    <div>
+    <div className="movie-prop">
       <div>
         <img src={movie.ImagePath} />
       </div>
@@ -61,7 +63,7 @@ const MovieView = ({ movies, user }) => {
         <span>{movie.Genre.Name}</span>
       </div>
       <div>
-        <Button onClick={handleFavorite} size="sm">
+        <Button variant="success" onClick={handleFavorite} size="sm">
           Add Favorite
         </Button>
       </div>
@@ -69,7 +71,7 @@ const MovieView = ({ movies, user }) => {
         <Button size="sm">Back</Button>
       </Link>
       <Link to={"/profile"}>
-        <Button variant="link">Back to profile</Button>
+        <Button variant="secondary">Back to profile</Button>
       </Link>
     </div>
   );

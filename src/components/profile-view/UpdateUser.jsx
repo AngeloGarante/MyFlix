@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
   Form,
@@ -20,10 +21,10 @@ const UpdateUser = ({ user, onUpdateProfile }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     const updateData = {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday,
+      Username: username ? username : storedUser.Username,
+      Password: password ? password : storedUser.Password,
+      Email: email ? email : storedUser.Email,
+      Birthday: birthday ? birthday : storedUser.Birthday,
     };
     fetch("https://myflix-angelo.cyclic.app/users/" + user.Username, {
       method: "PUT",
@@ -44,10 +45,7 @@ const UpdateUser = ({ user, onUpdateProfile }) => {
         <Col>
           <CardGroup>
             <Card>
-              <Card.Title>
-                All input must not be empty I dont know how to fix it will
-                update the profile with empty values
-              </Card.Title>
+              <Card.Title>Update your Profile:</Card.Title>
               <Card.Body>
                 <Form>
                   <Form.Group>
@@ -95,14 +93,16 @@ const UpdateUser = ({ user, onUpdateProfile }) => {
                     />
                   </Form.Group>
 
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    onClick={handleUpdate}
-                  >
+                  <Button variant="info" type="submit" onClick={handleUpdate}>
                     Update
                   </Button>
                 </Form>
+                <div>
+                  Back To Profile
+                  <Link to={`/profile/`}>
+                    <Button variant="secondary">Back</Button>
+                  </Link>
+                </div>
               </Card.Body>
             </Card>
           </CardGroup>

@@ -1,5 +1,11 @@
-$color: steelblue;
+.app-container {
+  background-color: dimgray;
+}
 
-.my-flix {
-  color: $color;
+.border-page {
+  background-color: black;
+}
+body > #root {
+  height: 100vh;
+  background-color: black;
 }

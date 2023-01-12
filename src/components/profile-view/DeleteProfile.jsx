@@ -36,13 +36,13 @@ const DeleteProfile = ({ user, token, onLoggedOut }) => {
   return (
     <>
       <h2> Are you sure you want to Delete your Account?</h2>
-      <Button onClick={deleteUser} variant="outline-danger">
+      <Button onClick={deleteUser} variant="danger">
         DELETE
       </Button>
       <div>
         Back To Profile
         <Link to={`/profile/`}>
-          <Button variant="link">Back</Button>
+          <Button variant="secondary">Back</Button>
         </Link>
       </div>
     </>
