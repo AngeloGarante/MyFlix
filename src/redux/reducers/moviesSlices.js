@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-token = localStorage.getItem("token")
+token = localStorage.getItem("token") || null;
 
 const initialState = {
     movies: [],
